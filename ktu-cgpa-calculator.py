@@ -6,7 +6,7 @@ if 'history' not in st.session_state:
 
 st.set_page_config(page_title="KTU GPA Calculator", layout="wide")
 
-st.title("📊 KTU GPA Calculator | Enhanced in Python")
+st.title("📊 KTU GPA Calculator")
 
 tabs = st.tabs(["GPA Calculator", "CGPA Calculator", "History"])
 
