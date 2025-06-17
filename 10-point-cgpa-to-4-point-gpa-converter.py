@@ -1,6 +1,3 @@
-import tkinter as tk
-from tkinter import ttk, messagebox
-
 class CGPAConverterApp:
     def __init__(self, root):
         self.root = root
