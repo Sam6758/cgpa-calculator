@@ -230,10 +230,6 @@ st.markdown("""
 def initialize_session_state():
     if 'courses' not in st.session_state:
         st.session_state.courses = [{"grade": 0.0, "credit": 1} for _ in range(3)]
-    if 'prev_credits' not in st.session_state:
-        st.session_state.prev_credits = 0
-    if 'prev_cgpa' not in st.session_state:
-        st.session_state.prev_cgpa = 0.0
     if 'show_results' not in st.session_state:
         st.session_state.show_results = False
     if 'animation_class' not in st.session_state:
@@ -277,7 +273,7 @@ def main():
             prev_credits = st.number_input(
                 "**Previous Total Credits**", 
                 min_value=0, 
-                value=st.session_state.prev_credits,
+                value=0,
                 key="prev_credits",
                 help="Enter your previous total credits"
             )
@@ -286,7 +282,7 @@ def main():
                 "**Previous CGPA**", 
                 min_value=0.0, 
                 max_value=10.0, 
-                value=st.session_state.prev_cgpa,
+                value=0.0, 
                 step=0.01,
                 key="prev_cgpa",
                 help="Enter your previous CGPA"
@@ -345,7 +341,7 @@ def main():
         # Add course button
         if st.button("➕ Add Another Course", key="add_course", use_container_width=True):
             st.session_state.courses.append({"grade": 0.0, "credit": 1})
-            st.experimental_rerun()
+            st.rerun()
         
         # Buttons
         col1, col2 = st.columns(2)
@@ -357,10 +353,8 @@ def main():
         # Reset functionality
         if reset:
             st.session_state.courses = [{"grade": 0.0, "credit": 1} for _ in range(3)]
-            st.session_state.prev_credits = 0
-            st.session_state.prev_cgpa = 0.0
             st.session_state.show_results = False
-            st.experimental_rerun()
+            st.rerun()
         
         # Calculate CGPA
         if calculate:
