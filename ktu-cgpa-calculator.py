@@ -4,9 +4,9 @@ import streamlit as st
 if 'history' not in st.session_state:
     st.session_state.history = []
 
-st.set_page_config(page_title="KTU CGPA Calculator", layout="wide")
+st.set_page_config(page_title="KTU GPA Calculator", layout="wide")
 
-st.title("📊 KTU CGPA Calculator | Enhanced in Python")
+st.title("📊 KTU GPA Calculator | Enhanced in Python")
 
 tabs = st.tabs(["GPA Calculator", "CGPA Calculator", "History"])
 
@@ -71,8 +71,8 @@ with tabs[2]:
     if st.session_state.history:
         for idx, record in enumerate(st.session_state.history, start=1):
             st.write(f"**{idx}. {record['type']}**: {record['value']} | {record['details']}")
+            # Remove button mutates state and Streamlit will auto‑rerun
             if st.button(f"Delete {record['type']} #{idx}", key=f"del_{idx}"):
                 st.session_state.history.pop(idx-1)
-                st.experimental_rerun()
     else:
         st.info("No history yet. Save a result to see it here.")
